@@ -1,0 +1,43 @@
+.task {
+  background-image: url(/img/underlining.png);
+  background-position: bottom;
+  background-repeat: repeat-x;
+  background-size: 4%;
+  padding-bottom: 3px;
+  &.done {
+    text-decoration: line-through;
+  }
+}
+
+.footer {
+  font-size: 20px;
+  display: flex;
+  width: calc(100% - 8px);
+}
+
+.footer .control {
+  display: flex;
+  flex-grow: 0;
+  gap: 10px;
+}
+.footer .control > * {
+  flex-basis: 50%;
+  text-align: center;
+}
+
+.footer .founder {
+  text-align: right;
+  flex-grow: 1;
+  padding-left: 10px;
+  font-weight: 700;
+}
+
+.footer .founder span {
+  font-family: initial;
+  font-size: 15px;
+  font-style: italic;
+  font-weight: normal;
+  &:nth-child(2) {
+    margin-left: 10px;
+  }
+}

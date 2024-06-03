@@ -1,0 +1,18 @@
+.assign_list {
+  ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    margin-left: 0;
+    li {
+      cursor: pointer;
+      padding: 10px 0;
+      &:hover {
+        text-decoration: underline;
+      }
+      &.active {
+        font-weight: 700;
+      }
+    }
+  }
+}

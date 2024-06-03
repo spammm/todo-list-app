@@ -1,0 +1,48 @@
+$primary-color: #ea6ba2;
+.notebook {
+  background-color: $primary-color;
+  max-width: 600px;
+  box-sizing: border-box;
+  margin: 15px auto;
+  height: 90vh;
+  padding: 2vh 1.5vh 2vh 0;
+  border-radius: 40px;
+  min-height: calc(97vh - 10px);
+  position: relative;
+  min-width: 410px;
+}
+
+.notebook_inner {
+  background-color: #d5edf9;
+  height: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  border-radius: 40px;
+  position: relative;
+  overflow: hidden;
+}
+
+.content {
+  padding-left: 35px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 100%;
+  scrollbar-width: thin; /* Тонкий скроллбар для Firefox */
+  scrollbar-color: rgba(0, 0, 0, 0.3) transparent; /* Цвет полосы и фона для Firefox */
+}
+
+.stepler {
+  position: absolute;
+  height: calc(100% - 40px);
+  background-size: contain;
+  background-image: url('/img/staple.png');
+  width: 54px;
+  left: -15px;
+  top: 20px;
+}
+
+.notebook h1 {
+  font-size: 40px;
+  font-weight: 600;
+  text-align: center;
+}
