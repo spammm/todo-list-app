@@ -11,7 +11,7 @@ const FriendsList: React.FC = () => {
   const friendsList = useAppSelector(selectAllFriends);
   const error = useAppSelector((state) => state.friends.error);
   const postStatus = useAppSelector((state) => state.friends.status);
-  const { friends, id } = useAppSelector(getProfile);
+  const { friends, id, referal } = useAppSelector(getProfile);
 
   useEffect(() => {
     if (postStatus === 'idle' && id) {
@@ -27,9 +27,14 @@ const FriendsList: React.FC = () => {
   if (friendsList.length === 0)
     return (
       <div>
-        Добавьте друзей и вы сможете назначать им задачи. <br /> Чтобы добавить
-        друга введите его ID в поле ввода и нажмите кнопку "Добавить". Или вы вы
-        можете отправить ему свой ID, чтобы он добавил вас.
+        Добавьте друзей и вы сможете назначать им задачи. <br />
+        <br />
+        Чтобы добавить друга, введите его ID в поле ввода и нажмите кнопку
+        "Добавить".
+        <br />
+        <br />
+        Или вы можете отправить ему свой ID(<b>{referal}</b>), чтобы он добавил
+        вас.
       </div>
     );
 

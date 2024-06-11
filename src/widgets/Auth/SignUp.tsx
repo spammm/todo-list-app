@@ -84,7 +84,7 @@ const SignUp = () => {
         ></InputWithLabel>
         <InputWithLabel
           type="password"
-          placeholder="Повторите ввод пароля пароль"
+          placeholder="Повторите ввод пароля"
           value={repeatPasswordInput}
           onChange={(e) => setRepeatPasswordInput(e.target.value)}
           required

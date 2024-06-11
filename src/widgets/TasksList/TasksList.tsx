@@ -6,6 +6,7 @@ import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { SpinnerText as Spinner } from '../../shared/Spinners';
 import { getProfile } from '../Profile/profileReducer';
 import { fetchFriends, selectAllFriends } from '../FriendsList/friendsReducer';
+import { Link } from 'react-router-dom';
 
 const TasksList: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -40,8 +41,10 @@ const TasksList: React.FC = () => {
   if (tasks.length === 0)
     return (
       <div>
-        Создайте задачи, отмечайте их выполнеными или удаляйте. <br />
-        Добавьте друзей и вы сможете делегировать задачи друг другу.
+        Создайте задачи, отмечайте их выполненными или удаляйте. <br />
+        <br />
+        Добавьте <Link to="/friends">друзей</Link> и вы сможете делегировать
+        задачи друг другу.
       </div>
     );
 

@@ -13,31 +13,37 @@
   font-size: 20px;
   display: flex;
   width: calc(100% - 8px);
-}
 
-.footer .control {
-  display: flex;
-  flex-grow: 0;
-  gap: 10px;
-}
-.footer .control > * {
-  flex-basis: 50%;
-  text-align: center;
-}
+  .control {
+    display: flex;
+    flex-wrap: wrap;
+    flex-grow: 0;
+    gap: 10px;
 
-.footer .founder {
-  text-align: right;
-  flex-grow: 1;
-  padding-left: 10px;
-  font-weight: 700;
-}
-
-.footer .founder span {
-  font-family: initial;
-  font-size: 15px;
-  font-style: italic;
-  font-weight: normal;
-  &:nth-child(2) {
-    margin-left: 10px;
+    > * {
+      text-align: center;
+      flex: 1 1 58px;
+    }
+  }
+  .founder {
+    text-align: right;
+    flex-grow: 1;
+    padding-left: 10px;
+    font-weight: 700;
+    div {
+      display: inline-block;
+      &:nth-child(2) {
+        margin-left: 10px;
+      }
+    }
+    span {
+      font-family: initial;
+      font-size: 15px;
+      font-style: italic;
+      font-weight: normal;
+      &:nth-child(2) {
+        margin-left: 10px;
+      }
+    }
   }
 }

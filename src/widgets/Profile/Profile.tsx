@@ -52,6 +52,7 @@ const Profile: React.FC = () => {
         </InputWithLabel>
         <InputWithLabel
           type="text"
+          placeholder="Введите имя"
           required
           value={userName}
           maxLength={24}

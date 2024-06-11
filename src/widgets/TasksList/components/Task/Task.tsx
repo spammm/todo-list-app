@@ -74,12 +74,16 @@ const Task: React.FC<TaskComponentType> = React.memo(
           )}
 
           <div className={style.founder}>
-            <span title={founderName}>Назначил: </span>
-            {truncateString(founderName, 6)}
-            <span title={executorName}>Исполнитель:</span>
-            <a href="#" onClick={assignTask} title={executorName}>
-              {truncateString(executorName, 7)}
-            </a>
+            <div>
+              <span title={founderName}>Назначил: </span>
+              {truncateString(founderName, 6)}
+            </div>
+            <div>
+              <span title={executorName}>Исполнитель:</span>
+              <a href="#" onClick={assignTask} title={executorName}>
+                {truncateString(executorName, 7)}
+              </a>
+            </div>
           </div>
         </div>
         {isEdit && (
