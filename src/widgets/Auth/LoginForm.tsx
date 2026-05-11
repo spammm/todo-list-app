@@ -12,12 +12,13 @@ import { ErrorType } from '../../types/tasksTypes';
 const LoginForm: React.FC = () => {
   const error = useAppSelector((state) => state.user.error);
   const status = useAppSelector((state) => state.user.status);
-  const [errorText, setErrorText] = useState<ErrorType>(error);
+  const [dismissedError, setDismissedError] = useState<ErrorType>(null);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [loginInput, setLoginInput] = useState('');
   const [passwordInput, setPasswordInput] = useState('');
   const user = useAppSelector(getProfile);
+  const errorText = error !== dismissedError ? error : null;
 
   const sendIsDisabled = !loginInput || !passwordInput;
 
@@ -31,16 +32,12 @@ const LoginForm: React.FC = () => {
     if (user.id) navigate('/');
   }, [navigate, user]);
 
-  useEffect(() => {
-    setErrorText(error);
-  }, [error]);
-
   if (status === 'loading') return <SpinnerText text="Отправка запроса..." />;
 
   return (
     <>
       {errorText && (
-        <PopupNotification onClose={() => setErrorText(null)}>
+        <PopupNotification onClose={() => setDismissedError(error)}>
           {errorText}
         </PopupNotification>
       )}
@@ -51,7 +48,7 @@ const LoginForm: React.FC = () => {
           value={loginInput}
           onChange={(e) => setLoginInput(e.target.value)}
           required
-          autoComplete='email'
+          autoComplete="email"
         >
           Логин:
         </InputWithLabel>

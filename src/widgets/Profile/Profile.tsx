@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { JustButton } from '../../shared/Buttons';
 import { InputWithLabel } from '../../shared/Fields';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
@@ -10,14 +10,23 @@ import { encryptString } from '../../utils/hash';
 
 const Profile: React.FC = () => {
   const { login, name, id } = useAppSelector(getProfile);
+  return <ProfileForm key={id} login={login} name={name} id={id} />;
+};
+
+const ProfileForm: React.FC<Pick<UserType, 'login' | 'name' | 'id'>> = ({
+  login,
+  name,
+  id,
+}) => {
   const error = useAppSelector((state) => state.user.error);
   const status = useAppSelector((state) => state.user.status);
   const isLoading = status === 'loading';
-  const [errorText, setErrorText] = useState<ErrorType>(error);
+  const [dismissedError, setDismissedError] = useState<ErrorType>(null);
   const [userName, setUserName] = useState(name);
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
   const dispatch = useAppDispatch();
+  const errorText = error !== dismissedError ? error : null;
 
   const onSaveProfile = async () => {
     const data: Pick<Partial<UserType>, 'password' | 'id' | 'name'> = { id };
@@ -35,14 +44,10 @@ const Profile: React.FC = () => {
   const isDisabledRepeatPassword = !password;
   const isDisabledSaveChanges = password !== repeatPassword || userName === '';
 
-  useEffect(() => {
-    setUserName(name);
-  }, [name]);
-
   return (
     <div className="user_details">
       {errorText && (
-        <PopupNotification onClose={() => setErrorText(null)}>
+        <PopupNotification onClose={() => setDismissedError(error)}>
           {errorText}
         </PopupNotification>
       )}

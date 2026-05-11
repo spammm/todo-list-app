@@ -18,7 +18,7 @@ export const fetchTasks = createAsyncThunk<TaskType[], void>(
       const response: AxiosResponse<TaskType[]> = await client.get(
         `tasks?founder_ne=${founder}&executor=${founder}`
       );
-      //crutch for json-server
+      // TODO: remove when json-server supports this compound filter.
       const data = response.data.filter(
         (task) => task.executor === founder && task.founder !== founder
       );
@@ -28,7 +28,7 @@ export const fetchTasks = createAsyncThunk<TaskType[], void>(
     try {
       const allTasks = await Promise.all([mytasksReq(), assignedReq()]);
       return allTasks.flat(Infinity);
-    } catch (error) {
+    } catch {
       return rejectWithValue('Ошибка получения данных...');
     }
   }

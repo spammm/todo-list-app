@@ -11,7 +11,7 @@ import { ErrorType } from '../../types/tasksTypes';
 const SignUp = () => {
   const error = useAppSelector((state) => state.user.error);
   const status = useAppSelector((state) => state.user.status);
-  const [errorText, setErrorText] = useState<ErrorType>(error);
+  const [dismissedError, setDismissedError] = useState<ErrorType>(null);
   const [loginInput, setLoginInput] = useState('');
   const [passwordInput, setPasswordInput] = useState('');
   const [repeatPasswordInput, setRepeatPasswordInput] = useState('');
@@ -19,6 +19,7 @@ const SignUp = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const user = useAppSelector(getProfile);
+  const errorText = error !== dismissedError ? error : null;
 
   const sendIsDisabled =
     !loginInput ||
@@ -38,16 +39,12 @@ const SignUp = () => {
     if (user.id) navigate('/');
   }, [navigate, user]);
 
-  useEffect(() => {
-    setErrorText(error);
-  }, [error]);
-
   if (status === 'loading') return <SpinnerText text="Отправка запроса..." />;
 
   return (
     <>
       {errorText && (
-        <PopupNotification onClose={() => setErrorText(null)}>
+        <PopupNotification onClose={() => setDismissedError(error)}>
           {errorText}
         </PopupNotification>
       )}

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { resetFriendsStatus } from '../FriendsList/friendsReducer';
 import { getProfile, addFriend } from '../Profile/profileReducer';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
@@ -8,19 +8,22 @@ import style from './AddFriend.module.scss';
 
 const AddFriend: React.FC = () => {
   const error = useAppSelector((state) => state.user.error);
-  const [errorText, setErrorText] = useState<ErrorType>(error);
+  const [localError, setLocalError] = useState<ErrorType>(null);
+  const [dismissedError, setDismissedError] = useState<ErrorType>(null);
   const isLoading = useAppSelector((state) => state.user.status) === 'loading';
   const [inputValue, setInputValue] = useState<string>('');
   const dispatch = useAppDispatch();
   const { friends, referal } = useAppSelector(getProfile);
 
+  const errorText = localError ?? (error !== dismissedError ? error : null);
+
   const onAdd = async () => {
     if (friends.some((r) => r === inputValue)) {
-      return setErrorText(() => 'Этот пользователь уже у вас в друзьях...');
+      return setLocalError('Этот пользователь уже у вас в друзьях...');
     }
     if (referal === inputValue) {
-      return setErrorText(
-        () => 'Вы пытаетесь добавить самого себя в друзья, не надо так...'
+      return setLocalError(
+        'Вы пытаетесь добавить самого себя в друзья, не надо так...'
       );
     }
 
@@ -31,14 +34,15 @@ const AddFriend: React.FC = () => {
     }
   };
 
-  useEffect(() => {
-    setErrorText(error);
-  }, [error]);
-
   return (
     <>
       {errorText && (
-        <PopupNotification onClose={() => setErrorText(null)}>
+        <PopupNotification
+          onClose={() => {
+            setLocalError(null);
+            setDismissedError(error);
+          }}
+        >
           {errorText}
         </PopupNotification>
       )}

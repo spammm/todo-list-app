@@ -22,10 +22,14 @@ class Client {
     } catch (error) {
       if (axios.isAxiosError(error)) {
         console.error('Ошибка Axios:', error.message);
-        throw new Error('Ошибка сети при выполнении запроса');
+        throw new Error('Ошибка сети при выполнении запроса', {
+          cause: error,
+        });
       } else {
         console.error('Ошибка при выполнении запроса:', error);
-        throw new Error('Произошла ошибка при выполнении запроса');
+        throw new Error('Произошла ошибка при выполнении запроса', {
+          cause: error,
+        });
       }
     }
   }
@@ -44,10 +48,14 @@ class Client {
     } catch (error) {
       if (axios.isAxiosError(error)) {
         console.error('Ошибка Axios:', error.message);
-        throw new Error('Ошибка сети при выполнении запроса');
+        throw new Error('Ошибка сети при выполнении запроса', {
+          cause: error,
+        });
       } else {
         console.error('Ошибка при выполнении запроса:', error);
-        throw new Error('Произошла ошибка при выполнении запроса');
+        throw new Error('Произошла ошибка при выполнении запроса', {
+          cause: error,
+        });
       }
     }
   }
@@ -66,10 +74,14 @@ class Client {
     } catch (error) {
       if (axios.isAxiosError(error)) {
         console.error('Ошибка Axios:', error.message);
-        throw new Error('Ошибка сети при выполнении запроса');
+        throw new Error('Ошибка сети при выполнении запроса', {
+          cause: error,
+        });
       } else {
         console.error('Ошибка при выполнении запроса:', error);
-        throw new Error('Произошла ошибка при выполнении запроса');
+        throw new Error('Произошла ошибка при выполнении запроса', {
+          cause: error,
+        });
       }
     }
   }
@@ -85,10 +97,14 @@ class Client {
     } catch (error) {
       if (axios.isAxiosError(error)) {
         console.error('Ошибка Axios:', error.message);
-        throw new Error('Ошибка сети при выполнении запроса');
+        throw new Error('Ошибка сети при выполнении запроса', {
+          cause: error,
+        });
       } else {
         console.error('Ошибка при выполнении запроса:', error);
-        throw new Error('Произошла ошибка при выполнении запроса');
+        throw new Error('Произошла ошибка при выполнении запроса', {
+          cause: error,
+        });
       }
     }
   }
@@ -106,10 +122,14 @@ class Client {
     } catch (error) {
       if (axios.isAxiosError(error)) {
         console.error('Ошибка Axios:', error.message);
-        throw new Error('Ошибка сети при выполнении запроса');
+        throw new Error('Ошибка сети при выполнении запроса', {
+          cause: error,
+        });
       } else {
         console.error('Ошибка при выполнении запроса:', error);
-        throw new Error('Произошла ошибка при выполнении запроса');
+        throw new Error('Произошла ошибка при выполнении запроса', {
+          cause: error,
+        });
       }
     }
   }

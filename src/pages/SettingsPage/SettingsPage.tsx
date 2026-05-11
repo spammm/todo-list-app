@@ -1,4 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { Profile } from '../../widgets/Profile';
 
 const SettingsPage: React.FC = () => {

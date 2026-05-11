@@ -22,7 +22,7 @@ export const fetchFriends = createAsyncThunk<FriendType[], void>(
       const data = responses.map((response) => response.data);
 
       return data.flat(Infinity);
-    } catch (error) {
+    } catch {
       return rejectWithValue('Ошибка получения данных...');
     }
   }
